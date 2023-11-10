@@ -27,16 +27,22 @@ const handler = NextAuth({
         // Add logic here to look up the user from the credentials supplied
         // const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
         const { email, name } = credentials;
-    
-        return axios.post(`${apiUrl}/auth/login`, { email, name })
-          .then((res) => {
-            const user: User = { name: name, email: email, favorites: [] };
-            return user;
-          })
-          .catch(e => console.error(e));
+        
+        // TODO: not working
+        // return axios.post(`${apiUrl}/auth/login`, { email, name })
+        //   .then((res) => {
+        //     const user: User = { name: name, email: email, favorites: [] };
+        //     return user;
+        //   })
+        //   .catch(e => console.error(e));
+          const user: User = { name: name, email: email, favorites: [] };
+          return user;
       }
     })
   ],
+  pages: {
+    error: '/login/error',
+  }
 });
 
 export { handler as GET, handler as POST };
